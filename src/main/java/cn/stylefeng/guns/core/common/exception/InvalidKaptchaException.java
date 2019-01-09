@@ -22,4 +22,5 @@ package cn.stylefeng.guns.core.common.exception;
  * @date 2017-05-05 23:52
  */
 public class InvalidKaptchaException extends RuntimeException {
+	private static final long serialVersionUID = -5964829191816770465L;
 }

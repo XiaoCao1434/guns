@@ -96,8 +96,8 @@ public class WebConfig implements WebMvcConfigurer {
      * druidServlet注册
      */
     @Bean
-    public ServletRegistrationBean druidServletRegistration() {
-        ServletRegistrationBean registration = new ServletRegistrationBean(new StatViewServlet());
+    public ServletRegistrationBean<StatViewServlet> druidServletRegistration() {
+        ServletRegistrationBean<StatViewServlet> registration = new ServletRegistrationBean<StatViewServlet>(new StatViewServlet());
         registration.addUrlMappings("/druid/*");
         return registration;
     }
@@ -106,8 +106,8 @@ public class WebConfig implements WebMvcConfigurer {
      * druid监控 配置URI拦截策略
      */
     @Bean
-    public FilterRegistrationBean druidStatFilter() {
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
+    public FilterRegistrationBean<WebStatFilter> druidStatFilter() {
+        FilterRegistrationBean<WebStatFilter> filterRegistrationBean = new FilterRegistrationBean<WebStatFilter>(new WebStatFilter());
         //添加过滤规则.
         filterRegistrationBean.addUrlPatterns("/*");
         //添加不需要忽略的格式信息.
@@ -160,10 +160,10 @@ public class WebConfig implements WebMvcConfigurer {
      * xssFilter注册
      */
     @Bean
-    public FilterRegistrationBean xssFilterRegistration() {
+    public FilterRegistrationBean<XssFilter> xssFilterRegistration() {
         XssFilter xssFilter = new XssFilter();
         xssFilter.setUrlExclusion(Arrays.asList("/notice/update", "/notice/add"));
-        FilterRegistrationBean registration = new FilterRegistrationBean(xssFilter);
+        FilterRegistrationBean<XssFilter> registration = new FilterRegistrationBean<XssFilter>(xssFilter);
         registration.addUrlPatterns("/*");
         return registration;
     }
